@@ -1,0 +1,38 @@
+-------------------------------------------------------------------------------
+Test set: com.hrms.SalaryApiTest
+-------------------------------------------------------------------------------
+Tests run: 12, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.156 s <<< FAILURE! -- in com.hrms.SalaryApiTest
+com.hrms.SalaryApiTest.testDeleteSalaryByEmpNo -- Time elapsed: 0.025 s <<< FAILURE!
+org.mockito.exceptions.verification.TooManyActualInvocations: 
+
+salaryService.deleteSalaryByEmpNum("EMP001");
+Wanted 1 time:
+-> at com.hrms.SalaryApiTest.testDeleteSalaryByEmpNo(SalaryApiTest.java:70)
+But was 2 times:
+-> at com.hrms.beans.controller.SalaryApi.deleteSalaryByEmpNo(SalaryApi.java:62)
+-> at com.hrms.beans.controller.SalaryApi.deleteSalaryByEmpNo(SalaryApi.java:63)
+
+
+	at com.hrms.SalaryApiTest.testDeleteSalaryByEmpNo(SalaryApiTest.java:70)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+com.hrms.SalaryApiTest.testDeleteSalaryByFromDate -- Time elapsed: 0.003 s <<< FAILURE!
+org.mockito.exceptions.verification.TooManyActualInvocations: 
+
+salaryService.deleteSalaryByFromDate(
+    Mon Dec 11 12:13:46 IST 2023
+);
+Wanted 1 time:
+-> at com.hrms.SalaryApiTest.testDeleteSalaryByFromDate(SalaryApiTest.java:116)
+But was 2 times:
+-> at com.hrms.beans.controller.SalaryApi.deleteSalaryByFromDate(SalaryApi.java:100)
+-> at com.hrms.beans.controller.SalaryApi.deleteSalaryByFromDate(SalaryApi.java:101)
+
+
+	at com.hrms.SalaryApiTest.testDeleteSalaryByFromDate(SalaryApiTest.java:116)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
