@@ -1,0 +1,84 @@
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-primary-subtle  mb-1" style="height: 40px;">
+</nav>
+
+<div class="container-fluid 10px">
+
+
+  <div class="sidebar" [ngClass]="{'active': showMenu}" >
+    <button (click)="toggleMenu()" class="close-btn">
+      <i class="fa fa-arrow-left" aria-hidden="true"></i>
+    </button>
+    <ul>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/" style="color: aqua;">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="employee" style="color: aqua;">Employees</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="departments" style="color: aqua;">Departments</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="departmentmanger" style="color: aqua;">DepartmentManagers</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="departmentemployee" style="color: aqua;">DepartmentEmployees</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="salaries" style="color: aqua;">Salaries</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="titles" style="color: aqua;">Titles</a>
+    </li>
+    </ul>
+  </div>
+
+  <section id="employees">
+  </section>
+  <section id="department">
+  </section>
+  <section id="employee-manager">
+  </section>
+  <section id="department-manager">
+  </section>
+  <section id="salaries">
+  </section>
+  <section id="titles">
+  </section>
+</div>
+
+
+<button (click)="toggleMenu()" class="menu-toggle">
+  <i class="fa fa-bars" aria-hidden="true"></i>
+</button>
+<nav class="navbar navbar-expand-lg navbar-light bg-primary-subtle fixed-top mb-5" style="height: 40px;">
+  <div class="container-fluid">
+
+   
+    <a class="navbar-brand" href="Home">
+      <i class="fa-solid fa-h-square fa-flip" style="font-size: 25px;" aria-hidden="true"></i> Human Resource Management System
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <button class="btn btn-primary mx-2" (click)="logout()">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+
+<div class="image-section">
+  <div class="image-container">
+    <img src="https://images.pexels.com/photos/4344340/pexels-photo-4344340.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Image 1">
+   
+

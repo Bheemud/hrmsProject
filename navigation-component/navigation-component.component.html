@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-primary-subtle fixed-top mb-6">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="Home">
+        <i class="fa-solid fa-h-square --fa-animation-timing" style="font-size: 25px;" aria-hidden="true"></i> Human Resource Management System
+      </a>
+   
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+     
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+            <li >
+                <a href="employee">Employee</a>
+            </li>
+            <li>
+                <a href="updateemployee">UpdateEmployee</a>
+            </li>
+            <li>
+                <a href="deleteemployee">DeleteEmployee</a>
+            </li>
+            <li>
+                <a href="addemployee">AddEmployee</a>
+            </li>
+          
+          <li class="nav-item">
+            <button class="btn btn-primary mx-1" (click)="logout()">Logout</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>

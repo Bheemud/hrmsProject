@@ -1,0 +1,312 @@
+
+<app-all-employees></app-all-employees>
+
+
+ 
+        
+      <!-- <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-4 mt-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title text-warning">HRMS - Employees</h5> -->
+                <!-- <button class="btn btn-info" (click)="showEmp()">Show All Employees</button> -->
+              
+                <!-- <ul class="list-group mt-3" *ngIf="showEmployees">
+                  <li class="list-group-item bg-light text-dark" *ngFor="let employeeDetail of employee">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <span class="font-weight-bold">{{ employeeDetail.empNo }}</span>
+                      <span>{{ employeeDetail.firstName }}</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div> -->
+
+
+          <!-- <div class="col-lg-4 mt-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title" style="text-decoration-line: underline; color: rgb(246, 148, 19);">Get Employees</h5>
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="card border-dark">
+                        <div *ngIf="employee1" class="card-body">
+                          <h2 class="card-title">Employee Details</h2>
+                          <p class="card-text">Employee ID: {{ employee1.empNo }}</p>
+                          <p class="card-text">First Name: {{ employee1.firstName }}</p>
+                          <p class="card-text">Last Name: {{ employee1.lastName }}</p>
+                          <p class="card-text">Email: {{ employee1.email }}</p>
+                          <p class="card-text">Hire Date: {{ employee1.hireDate }}</p>
+                          <p class="card-text">Birth Date: {{ employee1.birthDate }}</p>
+                          <p class="card-text">Gender: {{ employee1.gender }}</p>
+                          <p class="card-text">Password: {{ employee1.password }}</p>
+                          <p class="card-text">Role: {{ employee1.role }}</p>
+                        </div>
+                        <div class="card-body">
+                          <label for="employeeId">Enter Employee ID</label>
+                          <input type="text" [(ngModel)]="searchTerm" id="employeeId" class="form-control mb-2">
+                          <button (click)="getEmployeeById()" class="btn btn-info">Get Employee</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col mt-3" style="padding-left: 2%;">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title" style="text-decoration-line: underline; color: rgb(246, 148, 19);">Find employees by First Name</h5>
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="card border-dark" style="width: 300px;">
+                        <div *ngIf="employee2" class="card-body">
+                          <h2 class="card-title text-black">Employee Details</h2>
+                          <p class="card-text text-black">Employee ID: {{ employee2[0].empNo }}</p>
+                          <p class="card-text text-black">First Name: {{ employee2[0].firstName }}</p>
+                          <p class="card-text text-black">Last Name: {{ employee2[0].lastName }}</p>
+                          <p class="card-text text-black">Email: {{ employee2[0].email }}</p>
+                          <p class="card-text text-black">Hire Date: {{ employee2[0].hireDate }}</p>
+                          <p class="card-text text-black">Birth Date: {{ employee2[0].birthDate }}</p>
+                          <p class="card-text text-black">Gender: {{ employee2[0].gender }}</p>
+                          <p class="card-text text-black">Password: {{ employee2[0].password }}</p>
+                          <p class="card-text text-black">Role: {{ employee2[0].role }}</p>
+                        </div>
+                        <div class="card-body">
+                          <label for="firstNameInput">Enter First Name</label>
+                          <input type="text" [(ngModel)]="search" id="firstNameInput" class="form-control mb-2">
+                          <button (click)="getEmployeeByfirstName(search)" class="btn btn-info">Get Employee By First Name</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        
+          <div class="col mt-3" style="padding-right: 2%;">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title" style="text-decoration-line: underline; color: rgb(246, 148, 19);">Get employee by Last Name</h5>
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="card border-dark" style="width: 300px;">
+                        <div *ngIf="employeesByLastName" class="card-body">
+                          <h2 class="card-title text-white">Employee Details</h2>
+                          <p class="card-text text-black">Employee ID: {{ employeesByLastName[0].empNo }}</p>
+                          <p class="card-text text-black">First Name: {{ employeesByLastName[0].firstName }}</p>
+                          <p class="card-text text-black">Last Name: {{ employeesByLastName[0].lastName }}</p>
+                          <p class="card-text text-black">Email: {{ employeesByLastName[0].email }}</p>
+                          <p class="card-text text-black">Hire Date: {{ employeesByLastName[0].hireDate }}</p>
+                          <p class="card-text text-black">Birth Date: {{ employeesByLastName[0].birthDate }}</p>
+                          <p class="card-text text-black">Gender: {{ employeesByLastName[0].gender }}</p>
+                          <p class="card-text text-black">Password: {{ employeesByLastName[0].password }}</p>
+                          <p class="card-text text-black">Role: {{ employeesByLastName[0].role }}</p>
+                        </div>
+                        <div class="card-body">
+                          <label for="lastNameInput">Enter Last Name</label>
+                          <input type="text" [(ngModel)]="search1" id="lastNameInput" class="form-control mb-2">
+                          <button (click)="getDataByLastName()" class="btn btn-info">Get Employee By Last Name</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col mt-3" style="padding-left: 2%;">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title" style="text-decoration-line: underline; color: rgb(246, 148, 19);">Update by First Name</h5>
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="card border-dark" style="width: 300px;">
+                        <div class="card-body">
+                          <label for="empNo">Employee Number:</label>
+                          <input type="number" id="empNo" name="empNo" [(ngModel)]="empNo" required class="form-control mb-2">
+                          <label for="newFirstName">New First Name:</label>
+                          <input type="text" id="newFirstName" name="newFirstName" [(ngModel)]="newFirstName" required class="form-control mb-2">
+                          <button (click)="updateFirstName()" class="btn btn-info">Update First Name</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col mt-3" style="padding-right: 2%;">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title" style="text-decoration-line: underline; color: rgb(246, 148, 19);">Update by Last Name</h5>
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="card border-dark" style="width: 300px;">
+                        <div class="card-body">
+                          <label for="empNo">Employee Number:</label>
+                          <input type="number" id="empNo" name="empNo" [(ngModel)]="empno" required class="form-control mb-2">
+                          <label for="newLastName">New Last Name:</label>
+                          <input type="text" id="newLastName" name="newLastName" [(ngModel)]="newLastName" required class="form-control mb-2">
+                          <button (click)="updateLastName()" class="btn btn-info">Update Last Name</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col mt-3" style="padding-left: 2%;">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title" style="text-decoration-line: underline; color: rgb(246, 148, 19);">Update by Hire date</h5>
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="card border-dark" style="width: 300px;">
+                        <div class="card-body">
+                          <label for="empno1">Employee Number:</label>
+                          <input type="text" id="empno1" name="empno1" [(ngModel)]="empno1" required class="form-control mb-2">
+                          <label for="newHireDate">New Hire Date:</label>
+                          <input type="text" id="newHireDate" name="newHireDate" [(ngModel)]="newHireDate" required class="form-control mb-2">
+                          <button (click)="updateHireDate()" class="btn btn-info">Update Hire Date</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col mt-3" style="padding-right: 2%;">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title" style="text-decoration-line: underline; color: rgb(246, 148, 19);">Update Birth Date</h5>
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="card border-dark" style="width: 300px;">
+                        <div class="card-body">
+                          <label for="empno2">Employee Number:</label>
+                          <input type="text" id="empno2" name="empno2" [(ngModel)]="empno2" required class="form-control mb-2">
+                          <label for="newBirthDate">New Birth Date:</label>
+                          <input type="date" id="newBirthDate" name="newBirthDate" [(ngModel)]="newBirthDate" required class="form-control mb-2">
+                          <button (click)="updateBirthDate()" class="btn btn-info">Update Birth Date</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        
+          <div class="col-md-6 mt-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title" style="text-decoration-line: underline; color: rgb(246, 148, 19);">Delete Employee by ID</h5>
+                <div class="container-fluid">
+                  <div class="card border-dark" style="width: 300px;">
+                    <div class="card-body">
+                      <label for="empNoToDelete">Employee Number to Delete:</label>
+                      <input type="number" id="empNoToDelete" name="empNoToDelete" [(ngModel)]="empNoToDelete" required class="form-control mb-2">
+                      <button (click)="deleteEmployeeById()" class="btn btn-info">Delete Employee By ID</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6 mt-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title" style="text-decoration-line: underline; color: rgb(246, 148, 19);">Get Employee By Role</h5>
+                <div class="container-fluid">
+                  <div class="card border-dark" style="width: 300px;">
+                    <div class="card-body">
+                      <button (click)="getRoles()" class="btn btn-info mb-3">Get Role</button>
+                      <ul class="list-group">
+                        <li *ngFor="let r of roles" class="list-group-item bg-light text-dark">
+                          {{ r.role }}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6 mt-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title" style="text-decoration-line: underline; color: rgb(246, 148, 19);">Get list of Managers</h5>
+                <div class="container-fluid">
+                  <div class="card border-dark" style="width: 300px;">
+                    <div class="card-body">
+                      <button (click)="getManagers()" class="btn btn-info mt-3">Get Managers</button>
+                      <ul class="list-group">
+                        <li class="list-group-item" *ngFor="let manager of managers">
+                          {{ manager[0] }} - {{ manager[1] }}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6 mt-3">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title" style="text-decoration-line: underline; color: rgb(246, 148, 19);">Get Mid-age Employees</h5>
+                <div class="container-fluid">
+                  <div class="card border-dark" style="width: 300px;">
+                    <div class="card-body">
+                      <button (click)="fetchMidAgeEmployees()" class="btn btn-info">Get Mid-Age Employees</button>
+                      <ul class="list-group">
+                        <li class="list-group-item" *ngFor="let age of ages">
+                          <p>Employee ID: {{ age[0] }}</p>
+                          <p>First Name: {{ age.firstName }}</p>
+                          <p>Last Name: {{ age.lastName }}</p>
+                          <p>Email: {{ age.email }}</p>
+                          <p>Hire Date: {{ age.hireDate }}</p>
+                          <p>Birth Date: {{ age.birthDate }}</p>
+                          <p>Gender: {{ age.gender }}</p>
+                          <p>Password: {{ age.password }}</p>
+                          <p>Role: {{ age.role }}</p>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        
+          
+          
+       <footer class="footer mt-auto py-3 bg-dark text-white fixed-bottom">
+        <div class="container text-center">
+          <span>&copy; 2023 Your Company. All rights reserved.</span>
+        </div>
+      </footer> -->

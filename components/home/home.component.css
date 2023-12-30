@@ -1,0 +1,95 @@
+.navbar {
+    background-color: #3498db;
+    color: #fff;
+  }
+  
+  .navbar-brand {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .menu-toggle {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  
+  .menu-toggle i {
+    margin-right: 5px;
+  }
+  
+  .sidebar {
+    display: none;
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .sidebar.active {
+    display: block;
+  }
+  
+  .close-btn {
+    background-color: #ccc;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .close-btn i {
+    margin-right: 5px;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar ul li {
+    margin-bottom: 8px;
+  }
+  
+  .sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+.image-section {
+ 
+    width: 100%;
+    margin-top: 20px; 
+  }
+  
+body, html {
+    height: 100%;
+    margin: 0;
+  }
+  
+.image-section {
+    height: 100vh; 
+    display: flex;
+    overflow-x: auto; 
+  }
+  
+  .image-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .image-container img {
+    min-width: 427px; 
+    min-height: 427px; 
+    object-fit: cover; 
+  }
+  .sidebar{
+    background: linear-gradient(90deg, rgb(13, 10, 76) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+  }
+  
+  
+  
+  

@@ -1,0 +1,18 @@
+<app-navigation-component></app-navigation-component>
+<br><br><br>
+<div class="col-md-6 mt-3">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title" style="text-decoration-line: underline; color: rgb(246, 148, 19);">Delete Employee by ID</h5>
+        <div class="container-fluid">
+          <div class="card border-dark" style="width: 300px;">
+            <div class="card-body">
+              <label for="empNoToDelete">Employee Number to Delete:</label>
+              <input type="number" id="empNoToDelete" name="empNoToDelete" [(ngModel)]="empNoToDelete" required class="form-control mb-2">
+              <button (click)="deleteEmployeeById()" class="btn btn-info">Delete Employee By ID</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

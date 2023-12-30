@@ -1,0 +1,307 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-primary-subtle fixed-top mb-6">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">
+      <i class="fa-solid fa-h-square fa-flip" style="font-size: 25px;" aria-hidden="true"></i>uman Resource Management System
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <button class="btn btn-primary mx-1 " (click)="logout()">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+<div class="img">
+  <div class="card small-card" style="background-color: #ffffff; border: 1px solid #ced4da; border-radius: 0.25rem;">
+    <div class="card-body" style="color: #343a40;">
+      <h2 class="card-title" style="color: #007bff; font-size: 1.5rem; margin-bottom: 1.5rem;">All Titles</h2>
+      <button class="btn btn-primary btn-sm mb-3" (click)="getAllTitles()" style="background-color: #007bff; border-color: #007bff;">Get All Titles</button>
+      <table class="table table-bordered">
+        <thead style="color: #007bff;">
+          <tr>
+            <th>Title</th>
+            <th>Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let uniqueTitle of uniqueTitles">
+            <td>{{ uniqueTitle.title }}</td>
+            <td>{{ uniqueTitle.count }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- Add margin to move content below the card -->
+  <div style="margin-top: 20px;">
+    <!-- Your content goes here -->
+    <!-- Add your content that needs to be moved down here -->
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <div>
+        <input type="text" [(ngModel)]="empNoToDelete" placeholder="Employee Number" class="form-control">
+        <button (click)="onDelete()" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <div class="card small-card hrms-card" style="background-color: #f8f9fa; border: 1px solid #ced4da;">
+      <div class="card-body" style="color: #343a40;">
+        <button class="btn btn-primary" (click)="redirectToAddTitles()" style="background-color: #007bff; border-color: #007bff;">Add Title</button>
+        <div class="image-container">
+          <img src="https://img.freepik.com/free-vector/recruit-agent-analyzing-candidates_74855-4565.jpg?size=626&ext=jpg&ga=GA1.1.311258207.1700903545&semt=ais" alt="HRMS Image" class="img-fluid" />
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <div class="card">
+    <div class="card-body">
+      <form (ngSubmit)="onDeleteTitle()">
+        <label for="empNo">Employee Number:</label>
+        <input type="text" id="empNo" name="empNo" [(ngModel)]="empNo">
+    
+        <label for="fromDate">From Date:</label>
+        <input type="date" id="fromDate" name="fromDate" [(ngModel)]="fromDatee">
+    
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" [(ngModel)]="titleee">
+    
+        <button type="submit">Delete Title</button>
+      </form>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="card small-card">
+    <div class="card-body">
+      <form (ngSubmit)="getTitles()">
+        <label for="empNoInput">Employee Number:</label>
+        <input type="text" id="empNoInput" [(ngModel)]="employeeNumber" name="empNo" required>
+  
+        <label for="titleInput">Title:</label>
+        <input type="text" id="titleInput" [(ngModel)]="jobTitle" name="title" required>
+  
+        <button type="submit" class="btn btn-primary">Get Titles</button>
+      </form>
+  
+      <div *ngIf="titles && titles.length > 0">
+        <h3>Fetched Titles:</h3>
+        <ul>
+          <li *ngFor="let fetchedTitle of titles">
+            Title: {{ fetchedTitle.title }}<br>
+            Employee Number: {{ fetchedTitle.empNo }}<br>
+            From Date: {{ fetchedTitle.fromDate |date }}<br>
+            To Date: {{ fetchedTitle.toDate |date }}<br><br>
+            
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+
+
+
+<div class="card">
+  <div class="card-body">
+    <h2>Search Titles by Title</h2>
+    <form #titleForm="ngForm" (ngSubmit)="onSearchh()">
+      <div class="form-group">
+        <label for="title">Enter Title:</label>
+        <input type="text" id="title" name="title" [(ngModel)]="title" class="form-control" required>
+      </div>
+      <button type="submit" [disabled]="!titleForm.valid" class="btn btn-primary">Search</button>
+    </form>
+
+    <div *ngIf="fetchedTitles !== undefined">
+      <h3>Titles Found ({{ fetchedTitles.length }}):</h3>
+      <ul class="list-group">
+        <li *ngIf="fetchedTitles.length === 0" class="list-group-item">No titles found for the provided title.</li>
+        <li *ngFor="let title of fetchedTitles" class="list-group-item">
+          <div>{{ title.title }}</div>
+          <div>{{ title.empNo }}</div>
+          <div>{{ title.fromDate | date }}</div>
+          <div>{{ title.toDate | date }}</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="card">
+  <div class="card-body">
+    <label for="fromDate">From Date:</label>
+    <input type="date" id="fromDate" [(ngModel)]="fromDate" required>
+    <br><br>
+    <button (click)="onSearched()">Search</button>
+
+    <table *ngIf="fetchedTitles && fetchedTitles.length > 0">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Employee Number</th>
+          <th>From Date</th>
+          <th>To Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let title of fetchedTitles">
+          <td>{{ title.title }}</td>
+          <td>{{ title.empNo }}</td>
+          <td>{{ title.fromDate | date}}</td>
+          <td>{{ title.toDate | date }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="fetchedTitles && fetchedTitles.length === 0">
+      <p>No titles found for the provided date.</p>
+    </div>
+  </div>
+</div>
+
+
+  
+<div class="card">
+  <div class="card-body">
+    <label for="empNo">Employee Number:</label>
+    <input type="text" id="empNo" [(ngModel)]="empNo" placeholder="Enter Employee Number">
+    <br>
+    <label for="fromDate">From Date:</label>
+    <input type="date" id="fromDate" [(ngModel)]="fromDate" placeholder="Enter From Date">
+    <br>
+    <label for="title">Title:</label>
+    <input type="text" id="title" [(ngModel)]="title" placeholder="Enter Title">
+  
+    <button (click)="onSearching()">Search</button>
+  
+    <table *ngIf="fetchedTitles && fetchedTitles.length > 0">
+      <thead>
+        <tr>
+          <th>Employee Number</th>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let title of fetchedTitles">
+          <td>{{ title.empNo }}</td>
+          <td>{{ title.title }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div *ngIf="fetchedTitles && fetchedTitles.length === 0">
+      <p>No titles found.</p>
+    </div>
+  </div>
+</div>
+
+
+  
+
+  
+
+  
+  
+<div class="card">
+    <div class="card-body">
+      <form #deleteForm="ngForm" (ngSubmit)="Delete(deleteForm)">
+        <div class="form-group">
+          <label for="titleInput">Enter Title to Delete:</label>
+          <input type="text" id="titleInput" name="title" ngModel required class="form-control">
+        </div>
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </form>
+    </div>
+  </div>
+
+<div class="card">
+    <div class="card-body">
+      <form (ngSubmit)="onDelete()">
+        <div class="form-group">
+          <label for="empNoInput">Enter Employee Number:</label>
+          <input type="text" id="empNoInput" [(ngModel)]="empNoToDelete" name="empNo" required class="form-control">
+        </div>
+        <button type="submit" class="btn btn-danger">Delete Titles</button>
+      </form>
+    </div>
+  </div>
+  
+<div class="card">
+    <div class="card-body">
+      <div>
+        <input type="text" [(ngModel)]="empNoToDelete" placeholder="Employee Number" class="form-control">
+        <button (click)="onDelete()" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+  
+
+
+  
+
+<div *ngIf="titles.length > 0">
+  <table>
+    <thead>
+      <tr>
+        <th>Employee Number</th>
+        <th>From Date</th>
+        <th>To Date</th>
+        <th>Title</th>
+        <th>Employee First Name</th>
+        <th>Employee Last Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let title of titles">
+        <td>{{ title.empNo }}</td>
+        <td>{{ title.fromDate | date: 'yyyy-MM-dd' }}</td>
+        <td>{{ title.toDate | date: 'yyyy-MM-dd' }}</td>
+        <td>{{ title.title }}</td>
+        <td>{{ title.employee.firstName }}</td>
+        <td>{{ title.employee.lastName }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="titles.length === 0">
+</div>
+</div>
+
+
+
+<footer class="footer">
+  <div class="container">
+    <p>&copy; 2023 Your Company Name. All rights reserved.</p>
+  </div>
+</footer>

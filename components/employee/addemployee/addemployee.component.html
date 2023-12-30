@@ -1,0 +1,122 @@
+
+<app-navigation-component></app-navigation-component>
+<br><br><br>
+ <!-- <div class="card">
+    <div class="card-body">
+      <h5 class="card-title" style="text-decoration-line: underline; color: rgb(246, 148, 19);">Add Employee</h5>
+      <div class="container">
+        <form>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="empNo" class="form-label">Employee Number:</label>
+              <input type="text" id="empNo" name="empNo" class="form-control" [(ngModel)]="empNo" required>
+            </div>
+            <div class="col-md-6">
+              <label for="firstName" class="form-label">Employee First Name:</label>
+              <input type="text" id="firstName" name="firstName" class="form-control" [(ngModel)]="firstName" required>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="lastName" class="form-label">Employee Last Name:</label>
+              <input type="text" id="lastName" name="lastName" class="form-control" [(ngModel)]="lastName" required>
+            </div>
+            <div class="col-md-6">
+              <label for="birthDate" class="form-label">Employee Birth Date:</label>
+              <input type="text" id="birthDate" name="birthDate" class="form-control" [(ngModel)]="birthDate" required>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="hireDate" class="form-label">Employee Hire Date:</label>
+              <input type="text" id="hireDate" name="hireDate" class="form-control" [(ngModel)]="hireDate" required>
+            </div>
+            <div class="col-md-6">
+              <label for="email" class="form-label">Employee Email:</label>
+              <input type="email" id="email" name="email" class="form-control" [(ngModel)]="email" required>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="gender" class="form-label">Employee Gender:</label>
+                <input type="text" id="gender" name="gender" class="form-control" [(ngModel)]="gender" required>
+            </div>
+            <div class="col-md-6">
+              <label for="password" class="form-label">Employee Password:</label>
+              <input type="password" id="password" name="password" class="form-control" [(ngModel)]="password" required>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="role" class="form-label">Employee Role:</label>
+              <input type="text" id="role" name="role" class="form-control" [(ngModel)]="role" required>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-12 text-center">
+              <button type="submit" class="btn btn-info" (click)="addEmployee()">Add Employee</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div> -->
+
+
+  [9:15 AM] Bonam, Eswanth Prabhu kumar
+<div class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh; background-color: #292b2c;">
+        <div class="card border-dark" style="max-width: 700px;">
+          <h5 class="card-header bg-dark text-white">Add New Employee</h5>
+          <div class="card-body" style="background-color: #343a40;">
+            <form>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="empNo" class="text-white">Employee Number:</label>
+                    <input type="text" id="empNo" name="empNo" class="form-control" [(ngModel)]="empNo" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="firstName" class="text-white">First Name:</label>
+                    <input type="text" id="firstName" name="firstName" class="form-control" [(ngModel)]="firstName" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="lastName" class="text-white">Last Name:</label>
+                    <input type="text" id="lastName" name="lastName" class="form-control" [(ngModel)]="lastName" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="birthDate" class="text-white">Birth Date:</label>
+                    <input type="text" id="birthDate" name="birthDate" class="form-control" [(ngModel)]="birthDate" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="hireDate" class="text-white">Hire Date:</label>
+                    <input type="text" id="hireDate" name="hireDate" class="form-control" [(ngModel)]="hireDate" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="email" class="text-white">Email:</label>
+                    <input type="text" id="email" name="email" class="form-control" [(ngModel)]="email" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="gender" class="text-white">Gender:</label>
+                    <input type="text" id="gender" name="gender" class="form-control" [(ngModel)]="gender" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="password" class="text-white">Password:</label>
+                    <input type="text" id="password" name="password" class="form-control" [(ngModel)]="password" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="role" class="text-white">Role:</label>
+                    <input type="text" id="role" name="role" class="form-control" [(ngModel)]="role" required>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 text-center">
+                  <button type="submit" class="btn btn-warning" (click)="addEmployee()">Add Employee</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>  

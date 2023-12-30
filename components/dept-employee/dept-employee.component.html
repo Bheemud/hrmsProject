@@ -1,0 +1,654 @@
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-primary-subtle fixed-top mb-5" style="height: 40px;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="home">
+      <i class="fa-solid fa-h-square fa-flip" style="font-size: 25px;" aria-hidden="true"></i>uman Resource Management System
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <button class="btn btn-primary mx-2" (click)="logout()">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <br>
+  <div>
+
+ 
+ 
+    <br><br>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Department Employees</h5>
+    
+        <p>To fetch department employees</p>
+        <button (click)="fetchData()">Fetch All Dept Employees</button>
+    
+        <div *ngIf="deptEmployees.length > 0">
+          <p>Department Employee List</p>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Dept No</th>
+                <th>Department</th>
+                <th>Employee</th>
+                <th>From Date</th>
+                <th>To Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let deptEmployee of deptEmployees">
+                <td>{{ deptEmployee.id.deptNo }}</td>
+                <td>{{ deptEmployee.department | json }}</td>
+                <td>{{ deptEmployee.employee | json }}</td>
+                <td>{{ deptEmployee.fromDate }}</td>
+                <td>{{ deptEmployee.toDate }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    
+ 
+ 
+ 
+ 
+ 
+ 
+    <div class="card">
+      <div class="card-content">
+        <p>Fetch by empNo and deptNo</p>
+        <label for="empNo">Employee Number:</label><br>
+        <input type="number" id="empNo" [(ngModel)]="empNo" /><br>
+    
+        <label for="deptNo">Department Number:</label><br>
+        <input type="text" id="deptNo" [(ngModel)]="deptNo" /><br>
+    
+        <button (click)="search()">Search</button><br>
+      </div>
+    
+      <div *ngIf="searchResults && searchResults.length > 0" class="card-results">
+        <p>Search Results</p>
+        <ul>
+          <li *ngFor="let result of searchResults" class="card-item">
+            <p>Department Number: {{ result.id.deptNo }}</p>
+    
+            <p>{{ result.department | json }}</p>
+            <p>{{ result.employee | json }}</p>
+            <p>{{ result.fromDate }}</p>
+            <p>{{ result.toDate }}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+
+ 
+ 
+    <div class="card">
+      <div class="card-content">
+        <p>Search by EmpNo and FromDate</p>
+    
+        <form #searchForm="ngForm" (ngSubmit)="onSubmit(searchForm)">
+          <label for="empNo">Employee Number:</label><br>
+          <input type="number" id="empNo" name="empNo" [(ngModel)]="empNo" required><br>
+    
+          <label for="fromDate">From Date:</label><br>
+          <input type="date" id="fromDate" name="fromDate" [(ngModel)]="fromDate" required><br>
+    
+          <button type="submit" [disabled]="!searchForm.valid">Search</button>
+        </form>
+    
+        <div *ngIf="searchdata && searchdata.length > 0" class="card-results">
+          <p>Search Result</p>
+          <ul>
+            <li *ngFor="let item of searchdata" class="card-item">
+              <p>{{item.id.deptNo}}</p>
+              <p>{{item.id.empNo}}</p>
+              <p>{{item.department | json}}</p>
+              <p>{{item.employee | json}}</p>
+              <p>{{item.fromDate}}</p>
+              <p>{{item.toDate}}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="card">
+      <div class="card-content">
+        <p>Search Employees by DepartmentNo and From Date</p>
+    
+        <label for="deptNo">Department Number:</label><br>
+        <input type="text" id="deptNo" [(ngModel)]="deptNo" /><br>
+    
+        <label for="fromDate">From Date (yyyy-MM-dd):</label><br>
+        <input type="text" id="fromDate" [(ngModel)]="fromDate" /><br>
+    
+        <button (click)="searchByDeptnoAndFromdate()">Search</button>
+    
+        <div *ngIf="deptEmp.length > 0" class="card-results">
+          <h2>Department Employees:</h2>
+          <ul>
+            <li *ngFor="let employee of deptEmp" class="card-item">
+              <p>{{employee.id.deptNo}}</p>
+              <p>{{employee.id.empNo}}</p>
+              <p>{{employee.department | json}}</p>
+              <p>{{employee.employee | json}}</p>
+              <p>{{employee.fromDate}}</p>
+              <p>{{employee.toDate}}</p>
+            </li>
+          </ul>
+        </div>
+    
+        <div *ngIf="deptEmp.length === 0 && deptNo && fromDate" class="no-results">
+          <p>No employees found for the specified department and date.</p>
+        </div>
+      </div>
+    </div>
+    
+ 
+ 
+    <div class="card">
+      <div class="card-content">
+        <p>Update Department Employee</p>
+    
+        <label for="empNo">Employee Number:</label><br>
+        <input type="number" id="empNo" [(ngModel)]="empNo" /><br>
+    
+        <label for="deptNo">Department Number:</label><br>
+        <input type="text" id="deptNo" [(ngModel)]="deptNo" /><br>
+    
+        <label for="fromDate">From Date:</label><br>
+        <input type="date" id="fromDate" [(ngModel)]="fromDate" /><br>
+    
+        <label for="toDate">To Date:</label><br>
+        <input type="text" id="toDate" [(ngModel)]="toDate" /><br>
+    
+        <button (click)="updateDeptEmployee()">Update Department Employee</button>
+    
+        <div *ngIf="updateSuccess" class="success-message">Update successful!</div>
+        <div *ngIf="updateError" class="error-message">Error updating!</div>
+      </div>
+    </div>
+    
+ 
+ 
+    <div class="card">
+      <div class="card-content">
+        <p>Delete Department Employee</p>
+    
+        <label for="deleteEmpNo">Employee Number:</label><br>
+        <input type="number" id="deleteEmpNo" [(ngModel)]="deleteEmpNo" /><br>
+    
+        <label for="deleteDeptNo">Department Number:</label><br>
+        <input type="text" id="deleteDeptNo" [(ngModel)]="deleteDeptNo" /><br>
+    
+        <button (click)="deleteDeptEmp(deleteEmpNo, deleteDeptNo)">Delete Department Employee</button>
+        <div *ngIf="deleteSuccess" class="success-message">Delete successful!</div>
+        <div *ngIf="deletefail" class="error-message">Error deleting!</div>
+      </div>
+    </div>
+    
+    <br>
+ 
+ 
+ 
+    <div class="card">
+      <div class="card-content">
+        <p>Delete Department Employee by empNo and fromDate</p>
+        <form #deleteForm="ngForm" (ngSubmit)="deleteDeptEmpl(deleteForm.value.empNo, deleteForm.value.fromDate)">
+          <div>
+            <label for="empNo">Employee Number:</label><br>
+            <input type="number" id="empNo" name="empNo" ngModel #empNoInput="ngModel" required><br>
+          </div>
+    
+          <div>
+            <label for="fromDate">From Date (yyyy-MM-dd):</label><br>
+            <input type="text" id="fromDate" name="fromDate" ngModel #fromDateInput="ngModel" required><br>
+          </div>
+    
+          <button type="submit">Delete DeptEmp</button>
+        </form>
+        <br>
+      </div>
+    
+      <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+    </div>
+    
+    <div class="card">
+      <div class="card-content">
+        <p>Delete Department Employee by deptNo and fromDate</p>
+        <form>
+          <div>
+            <label for="deptNo">Dept No:</label><br>
+            <input type="text" id="deptNo" name="deptNo" [(ngModel)]="deptNo" /><br>
+          </div>
+          <div>
+            <label for="fromDate">From Date (yyyy-MM-dd):</label><br>
+            <input type="text" id="fromDate" name="fromDate" [(ngModel)]="fromDate" /><br>
+          </div>
+          <div>
+            <button type="button" (click)="deleteDeptEmployee()">Delete DeptEmp</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+ 
+ 
+ 
+    <div class="card">
+      <div class="card-content">
+        <p>Delete Department Employee by empNo, deptNo, fromDate</p>
+    
+        <div>
+          <label for="empNo">Employee Number:</label><br>
+          <input type="number" id="empNo" [(ngModel)]="empNo" placeholder="Enter Employee Number"><br>
+        </div>
+    
+        <div>
+          <label for="deptNo">Department Number:</label><br>
+          <input type="text" id="deptNo" [(ngModel)]="deptNo" placeholder="Enter Department Number"><br>
+        </div>
+    
+        <div>
+          <label for="fromDate">From Date:</label><br>
+          <input type="date" id="fromDate" [(ngModel)]="fromDate"><br>
+        </div>
+    
+        <button (click)="deleteDepartmentEmployee()">Delete Department Employee</button>
+      </div>
+    </div>
+     -->
+
+<div style=" background: rgb(2,0,36);
+background: linear-gradient(90deg, rgb(22, 18, 93) 0%, rgb(11, 127, 135) 35%, rgba(0, 213, 255, 0.279) 100%);">
+<nav class="navbar navbar-expand-lg navbar-light bg-primary-subtle fixed-top mb-5" style="height: 40px;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="home">
+      <i class="fa-solid fa-h-square fa-flip" style="font-size: 25px;" aria-hidden="true"></i>uman Resource Management System
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <button class="btn btn-primary mx-2" (click)="logout()">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <br><br>
+ 
+ 
+      <h3 class="card-title" style="color: black;">
+          Department Employees
+      </h3>
+ 
+      <div class="subheadings">
+        <div class="subheading">
+          <span class="symbol"><i class="fa fa-search" aria-hidden="true"></i></span>
+          <span>Fetch</span>
+        </div>
+        <div class="subheading">
+          <span class="symbol"><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></span>
+          <span>Update</span>
+        </div>
+        <div class="subheading">
+          <span class="symbol"><i class="fa fa-trash" aria-hidden="true"></i></span>
+          <span>Delete</span>
+        </div>
+      </div>
+ 
+    <br><br>
+ 
+    <div class="card" style="background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,113,121,1) 35%, rgba(0,212,255,1) 100%);; text-align: center;">
+  <div class="card-content" style="background-color: #D8BFD8; border-style: ridge;">
+    <br>
+    <p style="color: brown;"><b><i>To fetch department employees</i></b></p><br>
+    <div>
+      <i class="fa fa-sign-in" aria-hidden="true"></i> &nbsp;
+      <input type="text" [(ngModel)]="deptNo" placeholder="Enter DeptNo" />
+      &nbsp;
+      <i class="fa fa-sign-in" aria-hidden="true"></i> &nbsp;
+      <input type="text" [(ngModel)]="deptName" placeholder="Enter DeptName" />
+      &nbsp;
+      <i class="fa fa-sign-in" aria-hidden="true"></i> &nbsp;
+      <input type="text" [(ngModel)]="fromDate" placeholder="Select From Date" />
+      &nbsp;
+      <i class="fa fa-sign-in" aria-hidden="true"></i> &nbsp;
+      <input type="text" [(ngModel)]="toDate" placeholder="Select To Date" />
+      &nbsp;
+    </div>
+      <br>
+    <div *ngIf="noDataFoundMessage">"{{ noDataFoundMessage }}"</div>
+ 
+    <br><br>
+ 
+    <button (click)="fetchData()">Fetch department Employees <i class="fa fa-search" aria-hidden="true"></i></button>
+    <br /><br />
+ 
+    <div *ngIf="showDeptEmployees && filteredDeptEmployees.length > 0">
+      <button (click)="hideDeptEmployees()">Close Dept Employees <i class="fa fa-window-close" aria-hidden="true"></i></button>
+      <div *ngIf="filteredDeptEmployees.length > 0">
+        <p>Department Employee List</p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Dept No</th>
+              <th>Department</th>
+              <th>Employee</th>
+              <th>From Date</th>
+              <th>To Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let deptEmployee of filteredDeptEmployees">
+              <td>{{ deptEmployee.id.deptNo }}</td>
+              <td>{{this.deptEmployee.department.deptName}}</td>
+              <td><b>empNo</b>: {{ this.deptEmployee.employee.empNo }}, <b>firstName</b>: {{ this.deptEmployee.employee.firstName }}, <b>lastName</b>: {{ this.deptEmployee.employee.lastName }}</td>
+              <td>{{ deptEmployee.fromDate |date }}</td>
+              <td>{{ deptEmployee.toDate |date }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+ 
+ 
+ 
+ 
+    <div class="card" >
+     
+      <div class="card-content" style="background-color: #D8BFD8;text-align: center;border-style: ridge;"> <br>
+        <p style="color: brown;"><b><i> Fetch by empNo and deptNo</i></b></p>
+        <label for="empNo"><i class="fa fa-sign-in" aria-hidden="true"></i> Enter Employee Number:</label><br>
+        <input type="number" id="empNo" [(ngModel)]="empNo" /><br>
+   
+        <label for="deptNo"><i class="fa fa-sign-in" aria-hidden="true"></i> Enter Department Number:</label><br>
+        <input type="text" id="deptNo" [(ngModel)]="deptNo" /><br> <br>
+   
+        <button (click)="search()">Search <i class="fa fa-search" aria-hidden="true"></i></button><br><br>
+   
+      <div *ngIf="isSearchResultsVisible" class="card-results">
+        <p>Search Results</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Department Number</th>
+              <th>Department Name</th>
+              <th>Employee Number</th>
+              <th>From Date</th>
+              <th>To Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let result of searchResults" class="card-item">
+              <td>{{ result.id.deptNo }}</td>
+              <td>{{ result.department.deptName  }}</td>
+              <td><b>empNo</b>: {{ result.employee.empNo }}, <b>firstName</b>: {{ result.employee.firstName }}, <b>lastName</b>: {{ result.employee.lastName }}</td>
+              <td>{{ result.fromDate | date }}</td>
+              <td>{{ result.toDate |date }}</td>
+            </tr>
+          </tbody>
+        </table> <br><br>
+        <button (click)="hideSearchResults()">Close <i class="fa fa-window-close" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </div>
+ 
+ 
+ 
+    <div class="card">
+      <div class="card-content"style="background-color: #D8BFD8;text-align: center;border-style: ridge;"> <br>
+        <p style="color: brown;"><b><i> Fetch by EmpNo and FromDate</i></b></p>
+   
+        <form #searchForm="ngForm" (ngSubmit)="onSubmit(searchForm)">
+          <label for="empNo"><i class="fa fa-sign-in" aria-hidden="true"></i> Enter Employee Number:</label><br>
+          <input type="number" id="empNo" name="empNo" [(ngModel)]="empNo" required><br>
+   
+          <label for="fromDate"><i class="fa fa-sign-in" aria-hidden="true"></i> Enter From Date:</label><br>
+          <input type="date" id="fromDate" name="fromDate" [(ngModel)]="fromDate" required><br> <br>
+   
+          <button type="submit" [disabled]="!searchForm.valid">Search <i class="fa fa-search" aria-hidden="true"></i></button> <br><br>
+        </form>
+   
+        <div *ngIf="isSearchResultsVisible" class="card-results">
+          <button (click)="hideSearchResults()" style="display: inline-block;">Close <i class="fa fa-window-close" aria-hidden="true"></i></button> <br>
+ 
+ 
+          <p>Search Result</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Department Number</th>
+                <th>Department Details</th>
+                <th>Employee Details</th>
+                <th>From Date</th>
+                <th>To Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of searchdata" class="card-item">
+                <td>{{ item.id.deptNo }}</td>
+                <td>{{ item.department.deptName}}</td>
+                <td><b>empNo</b>: {{item.employee.empNo}},<b>firstName</b>: {{ item.employee.firstName}}, <b>lastName</b>:{{ item.employee.lastName}}</td>
+                <td>{{ item.fromDate |date }}</td>
+                <td>{{ item.toDate |date }}</td>
+              </tr>
+            </tbody>
+          </table>
+         
+        </div>
+      </div>
+    </div>
+   
+ 
+    <div class="card">
+      <div class="card-content" style="background-color: #D8BFD8; text-align: center;border-style: ridge;"> <br>
+        <p style="color: brown;"><b><i>Fetch Employees by DepartmentNo and From Date</i></b></p>
+   
+        <label for="deptNo"><i class="fa fa-sign-in" aria-hidden="true"></i> Enter Department Number:</label><br>
+        <input type="text" id="deptNo" [(ngModel)]="deptNo" /><br>
+   
+        <label for="fromDate"><i class="fa fa-sign-in" aria-hidden="true"></i> Enter From Date (yyyy-MM-dd):</label><br>
+        <input type="text" id="fromDate" [(ngModel)]="fromDate" /><br> <br>
+   
+        <button (click)="searchByDeptnoAndFromdate()">Search <i class="fa fa-search" aria-hidden="true"></i></button> <br><br>
+   
+        <div *ngIf="displaySearchData" class="card-results">
+          <p>Department Employees:</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Department Number</th>
+                <th>Department Details</th>
+                <th>Employee Details</th>
+                <th>From Date</th>
+                <th>To Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let employee of deptEmp" class="card-item">
+                <td>{{ employee.id.deptNo }}</td>
+                <td>{{ employee.department.deptName }}</td>
+                <td><b>empNo</b>: {{ employee.employee.empNo}}, <b>firstName</b>: {{ employee.employee.firstName}}, <b>lastName</b>: {{ employee.employee.lastName}}</td>
+                <td>{{ employee.fromDate|date }}</td>
+                <td>{{ employee.toDate |date }}</td>
+              </tr>
+            </tbody>
+          </table>
+         
+         
+          <button (click)="hideSearchData()">Close <i class="fa fa-window-close" aria-hidden="true"></i></button>
+        </div>
+   
+        <div *ngIf="deptEmp.length === 0 && deptNo && fromDate" class="no-results">
+          <p>No employees found for the specified department and date.</p>
+        </div>
+      </div>
+    </div>
+   
+ 
+    <div class="card" aria-colcount="">
+      <div class="card-content" style="background-color: #D8BFD8; text-align: center;border-style: ridge;"> <br>
+        <p style="color: brown;"><b><i> Update Department Employee</i></b></p>
+   
+        <label for="empNo"><i class="fa fa-sign-in" aria-hidden="true"></i> Enter Employee Number:</label> <br>
+        <input type="number" id="empNo" [(ngModel)]="empNo" /> <br>
+   
+        <label for="deptNo"><i class="fa fa-sign-in" aria-hidden="true"></i> Enter Department Number:</label> <br>
+        <input type="text" id="deptNo" [(ngModel)]="deptNo" /> <br>
+   
+        <label for="fromDate"><i class="fa fa-pencil-square-o" aria-hidden="true" ></i> Give From Date:</label> <br>
+        <input type="date" id="fromDate" [(ngModel)]="fromDate" /> <br>
+   
+        <label for="toDate"><i class="fa fa-pencil-square-o" aria-hidden="true" ></i> Give To Date:</label> <br>
+        <input type="text" id="toDate" [(ngModel)]="toDate" /> <br> <br>
+   
+        <button (click)="updateDeptEmployee()">Update Department Employee <i class="fa fa-pencil-square-o" aria-hidden="true"></i></button> <br> <br>
+   
+        <div *ngIf="updateSuccess">
+          Update successful! <br>
+          <button (click)="hideData()">Hide Data <i class="fa fa-window-close" aria-hidden="true"></i></button>
+        </div>
+       
+        <div *ngIf="isUpdatedDataVisible">
+          <p>Updated Data:</p>
+   
+          <table>
+            <thead>
+              <tr>
+                <th>Department Number</th>
+                <th>Department Details</th>
+                <th>Employee Details</th>
+                <th>From Date</th>
+                <th>To Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="card-item">
+                <td>{{ updatedEmployee.id.deptNo }}</td>
+                <td>{{ updatedEmployee.department.deptName }}</td>
+                <td><b>empNo</b>: {{ updatedEmployee.employee.empNo }}, <b>firstName</b>: {{ updatedEmployee.employee.firstName }}, <b>lastName</b>: {{ updatedEmployee.employee.lastName }}</td>
+                <td>{{ updatedEmployee.fromDate |date }}</td>
+                <td>{{ updatedEmployee.toDate | date}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+       
+        <div *ngIf="updateError">Error updating!</div>
+      </div>
+    </div>
+   
+   
+ 
+ 
+    <div class="card">
+      <div class="card-content"style="background-color: #D8BFD8;text-align: center;border-style: ridge;"> <br>
+        <p  style="color: brown;"><b><i>Delete Department Employee</i></b> </p>
+   
+        <label for="deleteEmpNo"><i class="fa fa-sign-in" aria-hidden="true"></i> Enter Employee Number:</label><br>
+        <input type="number" id="deleteEmpNo" [(ngModel)]="deleteEmpNo" /><br>
+   
+        <label for="deleteDeptNo"><i class="fa fa-sign-in" aria-hidden="true"></i> Enter Department Number:</label><br>
+        <input type="text" id="deleteDeptNo" [(ngModel)]="deleteDeptNo" /><br> <br>
+   
+        <button (click)="deleteDeptEmp(deleteEmpNo, deleteDeptNo)">Delete Department Employee <i class="fa fa-trash" aria-hidden="true"></i></button> <br><br>
+        <div *ngIf="deleteSuccess" class="success-message">Delete successful!</div>
+        <div *ngIf="deletefail" class="error-message">Error deleting!</div>
+      </div>
+    </div>
+   
+ 
+ 
+ 
+ 
+    <div class="card">
+      <div class="card-content"style="background-color: #D8BFD8;text-align: center;border-style: ridge;"> <br>
+        <p  style="color: brown;"><b><i> Delete Department Employee by empNo and fromDate</i></b></p>
+        <form #deleteForm="ngForm" (ngSubmit)="deleteDeptEmpl(deleteForm.value.empNo, deleteForm.value.fromDate)">
+          <div>
+            <label for="empNo"><i class="fa fa-sign-in" aria-hidden="true"></i> Enter Employee Number:</label><br>
+            <input type="number" id="empNo" name="empNo" ngModel #empNoInput="ngModel" required><br>
+          </div>
+   
+          <div>
+            <label for="fromDate"><i class="fa fa-sign-in" aria-hidden="true"></i> Enter From Date (yyyy-MM-dd):</label><br>
+            <input type="text" id="fromDate" name="fromDate" ngModel #fromDateInput="ngModel" required><br> <br>
+          </div>
+   
+          <button type="submit">Delete DeptEmp <i class="fa fa-trash" aria-hidden="true"></i></button> <br><br>
+        </form>
+        <br>
+      </div>
+   
+      <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+      <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div> <br>
+    </div>
+   
+    <div class="card">
+      <div class="card-content" style="background-color: #D8BFD8; text-align: center;border-style: ridge;"> <br>
+        <p style="color: brown;"><b><i> Delete Department Employee by deptNo and fromDate</i></b></p>
+        <label for="deptNo"><i class="fa fa-sign-in" aria-hidden="true"></i> Enter Department Number:</label><br>
+        <input type="text" id="deptNo" [(ngModel)]="deptNo" /><br>
+        <label for="fromDate"><i class="fa fa-sign-in" aria-hidden="true"></i> Enter From Date (yyyy-MM-dd):</label><br>
+        <input type="text" id="fromDate" [(ngModel)]="fromDate" /><br> <br>  
+        <button (click)="deleteDeptEmployee()">Delete DeptEmp <i class="fa fa-trash" aria-hidden="true"></i></button> <br><br>
+        <div *ngIf="deleteSuccessMessage" class="success-message">
+          {{ deleteSuccessMessage }}
+        </div>
+        <div *ngIf="deleteErrorMessage" class="error-message">
+          {{ deleteErrorMessage }}
+        </div>
+   
+      </div>
+    </div>
+   
+   
+ 
+ 
+ 
+    <div class="card">
+      <div class="card-content" style="background-color: #D8BFD8; text-align: center;border-style: ridge;"> <br>
+        <p style="color: brown;"><b><i>Delete Department Employee by empNo, deptNo, and fromDate</i></b></p>
+        <label for="empNo"><i class="fa fa-sign-in" aria-hidden="true"></i> Enter Employee Number:</label><br>
+        <input type="number" id="empNo" [(ngModel)]="empNo" /><br>
+   
+        <label for="deptNo"><i class="fa fa-sign-in" aria-hidden="true"></i> Enter Department Number:</label><br>
+        <input type="text" id="deptNo" [(ngModel)]="deptNo" /><br>
+   
+        <label for="fromDate"><i class="fa fa-sign-in" aria-hidden="true"></i> Enter From Date (yyyy-MM-dd):</label><br>
+        <input type="text" id="fromDate" [(ngModel)]="fromDate" /><br> <br>
+   
+        <button (click)="deleteDepartmentEmployee()">Delete Department Employee <i class="fa fa-trash" aria-hidden="true"></i></button> <br><br>
+        <div *ngIf="deleteSuccessMessage" class="success-message">
+          {{ deleteSuccessMessage }}
+        </div>
+        <div *ngIf="deleteErrorMessage" class="error-message">
+          {{ deleteErrorMessage }}
+        </div>
+   
+      </div>
+    </div>
+   
+ 

@@ -1,0 +1,221 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-primary-subtle fixed-top mb-5" style="height: 40px; ">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="home">
+      <i class="fa-solid fa-h-square fa-flip" style="font-size: 25px;" aria-hidden="true"></i>uman Resource Management
+      System
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <button class="btn btn-primary mx-2" (click)="logout()">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container mt-4">
+ 
+ 
+ 
+  <div class="container mt-4">
+    <!-- Fetch all department managers -->
+    <div class="card" style="background: #FFE4E1; text-align: center;">
+      <div class="card-content" style="background-color: #D8BFD8;">
+        <br>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Fetch all details</h5>
+            <p class="card-text">Fetch all department managers</p>
+            <button class="btn btn-primary" (click)="fetchData()">Fetch All Dept Managers</button>
+          </div>
+          <!-- Display fetched department managers -->
+          <div *ngIf="departmentManager && departmentManager.length > 0" class="card-body">
+            <h5 class="card-title">Department Managers</h5>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Department Number</th>
+                  <th>Employee Number</th>
+                  <th>Department</th>
+                  <th>Employee</th>
+                  <th>From Date</th>
+                  <th>To Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let manager of departmentManager">
+                  <td>{{ manager.id.departmentNumber }}</td>
+                  <td>{{ manager.id.employeeNumber }}</td>
+                  <td>{{ manager.department.deptName }}</td>
+                  <td><b>EmpNo :</b> {{ manager.employee.empNo}}, <b>firstName :</b> {{ manager.employee.firstName}}, <b>lastName :</b> {{ manager.employee.lastName}}</td>
+                  <td>{{ manager.fromDate | date }}</td>
+                  <td>{{ manager.toDate | date }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+ 
+ 
+ 
+ 
+ 
+    <div class="card" style="background: #FFE4E1; text-align: center;">
+      <div class="card-content" style="background-color: #D8BFD8;">
+        <div class="container mt-4">
+          <div class="card">
+            <div class="card-body">
+              <br>
+              <h5 class="card-title">Fetch Department Manager By Employee Number And Department Number</h5> <br>
+ 
+              <div class="form-group">
+                <label for="empNo">Employee Number:</label>
+                <input style="border-color: black;" type="text" id="empNo" name="empNo" [(ngModel)]="empNo" required
+                  class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="deptNo">Department Number:</label>
+                <input style="border-color: black;" type="text" id="deptNo" name="deptNo" [(ngModel)]="deptNo" required
+                  class="form-control">
+              </div>
+              <button (click)="fetchDeptManager()" class="btn btn-primary">Fetch Dept Manager</button>
+            </div>
+ 
+            <div *ngIf="manager" class="card-body">
+              <h5 class="card-title">Department Manager Details</h5>
+              <p class="card-text">Department Number: {{ manager.id.departmentNumber }}</p>
+              <p class="card-text">Employee Number: {{ manager.id.employeeNumber }}</p>
+            </div>
+          </div>
+        </div>
+ 
+ 
+ 
+        <div class="card" style="background: #FFE4E1; text-align: center;">
+          <div class="card-content" style="background-color: #D8BFD8;">
+            <div class="container mt-4">
+              <!-- Form to fetch department managers by employee number and from date -->
+              <div class="card">
+                <div class="card-body">
+                  <br>
+                  <h5 class="card-title">Fetch Department Managers By Employee Number And From Date</h5> <br>
+                  <!-- <p class="card-text">Fetch department managers by employee number and from date</p> -->
+                  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+                    <div class="form-group">
+                      <label for="empNo">Employee Number:</label>
+                      <input style="border-color: black;" type="number" id="empNo" name="empNo" ngModel required
+                        class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label for="fromDate">From Date:</label>
+                      <input style="border-color: black;" type="date" id="fromDate" name="fromDate" ngModel required
+                        class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Fetch Dept Managers</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="background: #FFE4E1; text-align: center;">
+          <div class="card-content" style="background-color: #D8BFD8;">
+            <!-- Display fetched department managers -->
+            <div *ngIf="deptManagers.length > 0" class="card-body">
+              <br>
+              <h5>Department Managers</h5>
+              <ul class="list-group">
+                <li *ngFor="let deptmngr of deptManagers" class="list-group-item">
+                  <p>Department Number: {{ deptmngr.id.deptNo }}</p>
+                  <p>Employee Number: {{ deptmngr.id.employeeNumber }}</p>
+                  <p>Department: {{ deptmngr.department.deptName}}</p>
+                  <p>Employee: {{ deptmngr.employee.empNo }}</p>
+                  <p>From Date: {{ deptmngr.fromDate |date }}</p>
+                  <p>To Date: {{ deptmngr.toDate | date }}</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+ 
+ 
+        <br>
+ 
+        <!-- dept-manager.component.html -->
+        <div class="card" style="background: #FFE4E1; text-align: center;">
+          <div class="card-content" style="background-color: #D8BFD8;">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Delete Department Manager By Employee Number And Department Number</h5>
+                <form #deleteForm="ngForm" (ngSubmit)="deleteDeptManager(deleteForm)">
+                  <div class="form-group">
+                    <label for="empNo">Employee Number:</label>
+                    <input style="border-color: black;" type="number" id="empNo" name="empNo" required
+                      [(ngModel)]="empNo" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="deptNo">Department Number:</label>
+                    <input style="border-color: black;" type="text" id="deptNo" name="deptNo" required
+                      [(ngModel)]="deptNo" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-danger">Delete </button>
+                  </div>
+                </form>
+ 
+                <div *ngIf="deletionSuccessMessage" class="alert alert-success">
+                  {{ deletionSuccessMessage }}
+                </div>
+                <div *ngIf="deletionErrorMessage" class="alert alert-danger">
+                  {{ deletionErrorMessage }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="background: #FFE4E1; text-align: center;">
+          <div class="card-content" style="background-color: #D8BFD8;">
+            <div class="container mt-4">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Fetch Department Managers By Department Numbers and From Date</h5>
+                  <div class="form-group">
+                    <label for="deptNo">Department Number:</label>
+                    <input style="border-color: black;" type="text" id="deptNo" [(ngModel)]="deptNo" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="fromDate">From Date:</label>
+                    <input style="border-color: black;" type="text" id="fromDate" [(ngModel)]="fromDate" class="form-control">
+                  </div>
+                  <button (click)="fetchdeptManager()" class="btn btn-primary">Fetch</button>
+                </div>
+              </div>
+       
+              <div *ngIf="deptManagers && deptManagers.length > 0" class="card mt-3 small w-120">
+                <div class="card-body">
+                  <h5 class="card-title">Department Managers</h5>
+                  <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let deptmnagr of deptManagers">
+                      <p>Department Number: {{ deptmnagr.id.departmentNumber }}</p>
+                      <p>Employee Number: {{ deptmnagr.id.employeeNumber }}</p>
+                      <p>Department: {{ deptmnagr.department.deptName }}</p>
+                      <p><i>Employee</i>: <b>EmpNo :</b> {{ deptmnagr.employee.empNo }}, <b>firstName :</b> {{ deptmnagr.employee.firstName }}, <b>lastName :</b> {{ deptmnagr.employee.lastName }}</p>
+                      <p>From Date: {{ deptmnagr.fromDate | date }}</p>
+                      <p>To Date: {{ deptmnagr.toDate | date }}</p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>  
+       
+       

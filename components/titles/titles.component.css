@@ -1,0 +1,195 @@
+.card {
+  width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px;
+  background-color: #fff;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.card-text {
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+/* Bootstrap classes assumed to be available for the card styling */
+.small-card {
+  max-width: 400px; /* Adjust the maximum width as needed */
+  margin: 20px auto;
+}
+
+.small-card .card-body {
+  padding: 20px;
+}
+
+.small-card form {
+  margin-bottom: 20px;
+}
+
+.small-card label {
+  font-weight: bold;
+}
+
+.small-card input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.small-card button[type="submit"] {
+  padding: 10px 20px;
+}
+
+.small-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.small-card ul li {
+  margin-bottom: 5px;
+}
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 50%; /* Adjust the width as desired */
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.card label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.card input[type="date"] {
+  padding: 8px;
+  width: calc(100% - 16px);
+  margin-bottom: 15px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.card button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.card button:hover {
+  background-color: #0056b3;
+}
+
+.card table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.card th, .card td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+
+
+
+.navbar {
+  background-color: #f8f9fa;
+border-bottom: 1px solid #ced4da;
+  background-origin: padding-box;
+}
+
+.navbar-brand {
+  font-size: 25px;
+  color: #007bff; /* Brand text color */
+}
+
+.navbar-nav .nav-link {
+  color: #343a40; /* Link text color */
+  font-weight: bold; /* Font weight */
+}
+
+.navbar-toggler-icon {
+  background-color: #007bff; /* Toggler icon color */
+}
+
+.btn-login {
+  background-color: #007bff; /* Login button background color */
+  color: #fff; /* Login button text color */
+  border: 1px solid #007bff; /* Login button border */
+  font-weight: bold; /* Font weight */
+}
+
+/* Card hover effect */
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adjust shadow on hover */
+  transform: translateY(-5px); /* Move the card slightly on hover */
+  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Add transition */
+}
+
+/* Button hover effect */
+.btn:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px); /* Move the button slightly on hover */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Add transition */
+}
+
+/* Navbar link hover effect */
+.navbar-nav .nav-link:hover {
+  color: #007bff; /* Change link text color on hover */
+}
+
+/* Cursor pointer for clickable elements */
+.btn,
+.navbar-toggler,
+.navbar-brand,
+.nav-link,
+.link {
+  cursor: pointer;
+}
+/* Card container styles */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Adjust spacing between cards */
+}
+
+/* Card styles */
+.card {
+  width: 30%; /* Adjust the width of the cards */
+  margin-bottom: 20px; /* Adjust spacing between rows */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  background-color: #fff;
+}
+
+

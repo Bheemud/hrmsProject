@@ -1,0 +1,77 @@
+
+<app-navigation-component></app-navigation-component>
+<br><br><br>
+<div class="container mt-3">
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title" style="text-decoration-line: underline; color: rgb(246, 148, 19);">Update by First Name</h5>
+            <div class="card border-dark" style="width: 300px;">
+              <div class="card-body">
+                <label for="empno3">Employee Number:</label>
+                <input type="number" id="empno3" name="empno3" [(ngModel)]="empno3" required class="form-control mb-2">
+                <label for="newFirstName">New First Name:</label>
+                <input type="text" id="newFirstName" name="newFirstName" [(ngModel)]="newFirstName" required class="form-control mb-2">
+                <button (click)="updateFirstName()" class="btn btn-info">Update First Name</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-6 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title" style="text-decoration-line: underline; color: rgb(246, 148, 19);">Update by Last Name</h5>
+            <div class="card border-dark" style="width: 300px;">
+              <div class="card-body">
+                <label for="empno">Employee Number:</label>
+                <input type="number" id="empno" name="empno" [(ngModel)]="empno" required class="form-control mb-2">
+                <label for="newLastName">New Last Name:</label>
+                <input type="text" id="newLastName" name="newLastName" [(ngModel)]="newLastName" required class="form-control mb-2">
+                <button (click)="updateLastName()" class="btn btn-info">Update Last Name</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title" style="text-decoration-line: underline; color: rgb(246, 148, 19);">Update by Hire date</h5>
+            <div class="card border-dark" style="width: 300px;">
+              <div class="card-body">
+                <label for="empNo3">Employee Number:</label>
+                <input type="number" id="empNo3" name="empNo3" [(ngModel)]="empno1" required class="form-control mb-2">
+                <label for="newHireDate">New Hire Date:</label>
+                <input type="date" id="newHireDate" name="newHireDate" [(ngModel)]="newHireDate" required class="form-control mb-2">
+                <button (click)="updateHireDate()" class="btn btn-info">Update Hire Date</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-md-6 mb-3">
+        <div class="card">
+          <div class="card-body ">
+            <h5 class="card-title" style="text-decoration-line: underline; color: rgb(246, 148, 19);">Update Birth Date</h5>
+            <div class="card border-dark" style="width: 300px;">
+              <div class="card-body justify-content-center">
+                <label for="empNo4">Employee Number:</label>
+                <input type="number" id="empNo4" name="empNo4" [(ngModel)]="empno2" required class="form-control mb-2">
+                <label for="newBirthDate">New Birth Date:</label>
+                <input type="date" id="newBirthDate" name="newBirthDate" [(ngModel)]="newBirthDate" required class="form-control mb-2">
+                <button (click)="updateBirthDate()" class="btn btn-info">Update Birth Date</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

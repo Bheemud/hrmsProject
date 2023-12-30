@@ -1,0 +1,108 @@
+/* Card styles */
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .btn-primary {
+    padding: 8px 16px;
+    font-size: 1rem;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  h2 {
+    font-size: 1.4rem;
+    margin-top: 20px;
+    color: #333;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    color: #333;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    color: #555;
+  }
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center; /* Adjust alignment as needed */
+  }
+  
+  .card {
+    flex: 1 1 300px; /* Set a fixed width for each card */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 100%; /* Ensure responsiveness */
+    /* Other card styles */
+  }
+/* Link hover effect */
+a:hover {
+    color: #007bff; /* Change color on hover */
+    text-decoration: underline; /* Underline link on hover */
+    transition: color 0.3s ease, text-decoration 0.3s ease; /* Add transition */
+  }
+/* Image hover effect */
+img:hover {
+    opacity: 0.8; /* Reduce opacity on hover */
+    transition: opacity 0.3s ease; /* Add transition */
+  }
+/* Input field hover effect */
+input[type="text"]:hover, input[type="date"]:hover {
+    border-color: #007bff; /* Change border color on hover */
+    transition: border-color 0.3s ease; /* Add transition */
+  }
+/* Table row hover effect */
+table tr:hover {
+    background-color: #f4f4f4; /* Change background color on hover */
+    transition: background-color 0.3s ease; /* Add transition */
+  }
+          
+  /* Change the text color for the typing text in an input field */
+input[type="text"] {
+    color: #333; /* Change this color to your desired text color */
+  }
+  

@@ -1,0 +1,205 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-primary-subtle fixed-top mb-5" style="height: 40px;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="home">
+      <i class="fa-solid fa-h-square fa-flip" style="font-size: 25px;" aria-hidden="true"></i>uman Resource Management System
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <button class="btn btn-primary mx-2" (click)="logout()">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<br><br><br>
+<nav class="navbar navbar-expand-lg navbar-light bg-primary-subtle fixed-top mb-5" style="height: 40px;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="home">
+      <i class="fa-solid fa-h-square fa-flip" style="font-size: 25px;" aria-hidden="true"></i>uman Resource Management System
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <button class="btn btn-primary mx-2" (click)="logout()">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+ 
+<br><br>
+<br><br>
+<div style="background-color: thistle;">
+ 
+  <br><br>
+  <br><br>
+<h2 style="color:deeppink; font-family: Arial, sans-serif;">Departments</h2>
+  <br><br><br>
+ <div class="container">
+    <div class="card">
+        <div class="card-body">
+          <p style="color:deeppink; font-family: Arial, sans-serif;"><b>To createDepartment</b></p>
+ 
+            <label for="deptNoInput">Department Number:</label>
+            <input id="deptNoInput" placeholder="Enter Dept number" [(ngModel)]="newDepartment.deptNo" name="deptnum" /> <br><br>
+            <label for="deptNameInput">Department Name:</label>
+            <input id="deptNameInput" placeholder="Dept name" [(ngModel)]="newDepartment.deptName" name="deptname" /> <br><br>
+            <button (click)="createDepartment()">Create Department</button>
+            <table *ngIf="departments.length > 0">
+              <thead>
+                <tr>
+                  <th>Department No</th>
+                  <th>Department Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let dept of departments">
+                  <td>{{ dept.deptNo }}</td>
+                  <td>{{ dept .deptName }}</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+</div>
+ 
+<br><br>
+ 
+<div class="card ">
+  <div class="card-body">
+    <p style="color:deeppink; font-family: Arial, sans-serif;"> <b>To Fetch Departments</b></p>
+    <button (click)="fetchData()">Fetch Departments</button>
+  </div>
+  <table *ngIf="departments.length > 0">
+    <thead>
+      <tr>
+        <th>Department No</th>
+        <th>Department Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let department of departments">
+        <td>{{ department.deptNo }}</td>
+        <td>{{ department.deptName }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+ 
+  <br><br>
+ 
+  <div class="card">
+  <div class="card-body">
+    <p style="color:deeppink; font-family: Arial, sans-serif;"><b> To getDepartmentByDeptNo</b></p>
+    <label for="deptNoInput">Enter deptNo:</label> <br>
+    <input id="deptNoInput" [(ngModel)]="deptNoToFetch" /><br> <br>
+    <button (click)="getDepartmentByDeptNo(deptNoToFetch)">Get by deptNo</button><br>
+ 
+    <div *ngIf="selectedDepartment">
+      <h3>Selected Department</h3>
+      <p>Department No: {{ selectedDepartment.deptNo }}</p>
+      <p>Department Name: {{ selectedDepartment.deptName }}</p>
+    </div>
+  </div>
+</div>
+ 
+ 
+<br><br>
+ 
+<div class="card">
+  <div class="card-body">
+    <p style="color:deeppink; font-family: Arial, sans-serif;"><b> To getDepartmentByDeptName</b></p>
+    <label for="name">Enter deptName:</label> <br>
+    <input id="name" [(ngModel)]="name" /> <br><br>
+    <button  (click)="getDepartmentByDeptName(name)">Get by departmentName</button>
+  </div>
+</div>
+ 
+ 
+<div class="container">
+ 
+  <div *ngIf="getdata">
+    <h3>Selected Department:</h3>
+    <table>
+      <tr>
+        <th>Dept No</th>
+        <th>Dept Name</th>
+      </tr>
+      <tr>
+        <td>{{ getdata[0].deptNo }}</td>
+        <td>{{ getdata[0].deptName }}</td>
+      </tr>
+    </table>
+  </div>
+ 
+</div>
+ 
+<br><br>
+ 
+ 
+<div class="card">
+  <div class="card-body">
+    <p style="color:deeppink; font-family: Arial, sans-serif;"><b> To updateDepartmentNumber</b></p>
+    <label for="deptno">Enter Department Number:</label> <br>
+    <input id="deptno" [(ngModel)]="depno" /> <br><br>
+ 
+    <label for="newname">Enter New Department Name:</label> <br>
+    <input id="newname" [(ngModel)]="newname" /> <br><br>
+ 
+    <button (click)="updateDept()">Update Department No</button>
+  </div>
+</div>
+ 
+<br><br>
+ 
+ 
+<div class="card">
+  <div class="card-body">
+    <p style="color:deeppink; font-family: Arial, sans-serif;"> <b>To updateDepartmentName</b></p>
+    <label for="deptName">Enter Department Name:</label> <br>
+    <input id="deptName" [(ngModel)]="deptName" name="deptName" /> <br><br>
+ 
+    <label for="updatedName">Enter Updated Name:</label> <br>
+    <input id="updatedName" [(ngModel)]="updatedName" name="updatedName" /> <br>
+    <br>
+ 
+    <button type="button" (click)="updateDepartmentName()">Update Department Name</button>
+  </div>
+</div>
+ 
+ <br><br>
+ 
+ <div class="card">
+  <div class="card-body">
+    <p style="color:deeppink; font-family: Arial, sans-serif;"><b> To deleteDepartmentByNo</b></p>
+    <label for="deptNo">Enter Department Number:</label> <br>
+    <input id="deptNo" [(ngModel)]="deptNo" /> <br><br>
+ 
+    <button (click)="deleteDepartment()">Delete Department</button> <br>
+  </div>
+  </div>
+ 
+<br><br>
+ 
+<div class="card">
+  <div class="card-body">
+    <p style="color:deeppink; font-family: Arial, sans-serif;"><b>To deleteDepartmentByName</b> </p>
+ 
+    <label for="deptName">Enter Department Name:</label> <br>
+    <input id="deptName" [(ngModel)]="deptName" /> <br><br>
+ 
+    <button (click)="deleteDepartmentByName()">Delete Department by Name</button> <br>
+  </div>
+</div>
+ 
+<br><br><br>
+ 
+</div>
